@@ -1,0 +1,10 @@
+{% extends 'componentes/master.html' %}
+
+{% block master %}
+    <h1>Página Home</h1>
+    <ul>
+        {% for user in users %}
+            <li>{{ user.nome }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
