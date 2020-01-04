@@ -4,7 +4,8 @@
 namespace App\Controller;
 
 use App\Model\User;
-use Core\Controllers\Controller;
+use Core\Controller;
+use Core\Validate;
 use Slim\Http\Request;
 use Slim\Http\Response;
 
@@ -17,14 +18,79 @@ class UserController extends Controller
        $this->users = new User();
    }
 
-    public function show(Request $request,Response $response){
+    /**
+     * Lista todos os usuários
+     * Método de requisição: GET
+     */
+    public function index(){
 
-         $this->view("site.home",
-             [
-                 "users" => $this->users->all(),
-                 "title" => "Listando Usuários"
-             ]
-         );
+        $this->view("home",
+            [
+                "users" => $this->users->all(),
+                "title" => "Listando Usuários"
+            ]
+        );
+    }
+
+    /**
+     * Exibe o formulário de criação de usuário
+     * Método de requisição: GET
+     */
+    public function create(){
+
+       $this->view("cadastro");
 
    }
+
+    /**
+     * Processa o formulário de criação de usuário
+     * Método de requisição: POST
+     */
+   public function store(){
+
+
+       $validate = new Validate();
+       $data = $validate->validate([
+           "nome"     => "required",
+           "email"    => "required:email",
+           "telefone" => "required"
+       ]);
+
+       if($validate->hasErros()){
+          back();
+          exit;
+       }
+
+
+   }
+
+    /**
+     * Exibe o formulário de edição de usuário
+     * Método de requisição: GET
+     */
+    public function edit($id)
+    {
+
+    }
+
+
+    /**
+     * Processa o formulário de edição de usuário
+     * Método de requisição: POST
+     */
+    public function update()
+    {
+
+    }
+
+
+    /**
+     * Remove um usuário
+     * Método de requisição: POST
+     */
+    public function remove($id)
+    {
+
+    }
+
 }
