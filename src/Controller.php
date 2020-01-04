@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Core\Controllers;
+namespace Core;
 
 use App\traits\View;
 

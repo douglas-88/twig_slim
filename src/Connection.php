@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Core\Models;
+namespace Core;
 use \PDO;
 
 abstract class Connection
@@ -11,14 +11,14 @@ abstract class Connection
    private   $dbname;
    private   $userdb;
    private   $passworddb;
-   private   $pdo;
+   public    $connection;
 
     public function __construct()
     {
-        $this->host       = "localhost";
-        $this->dbname     = "twig_slim";
-        $this->userdb     = "root";
-        $this->passworddb = "1475";
+        $this->host       = $_ENV["DB_HOST"];
+        $this->dbname     = $_ENV["DB_DATABASE"];
+        $this->userdb     = $_ENV["DB_USERNAME"];
+        $this->passworddb = $_ENV["DB_PASSWORD"];
 
         $options = [
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ,
@@ -27,7 +27,7 @@ abstract class Connection
 
         try{
 
-            $this->pdo = new PDO("mysql:host={$this->host};dbname={$this->dbname};charset=utf8", "{$this->userdb}", "$this->passworddb",$options);
+            $this->connection = new PDO("mysql:host={$this->host};dbname={$this->dbname};charset=utf8", "{$this->userdb}", "$this->passworddb",$options);
 
         }catch(\PDOException $e){
             $this->erros = $e->getMessage();
@@ -43,7 +43,5 @@ abstract class Connection
         $this->erros = $erro;
     }
 
-    public function getConnection(){
-        return $this->pdo;
-    }
+
 }

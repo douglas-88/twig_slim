@@ -3,7 +3,7 @@
 
 namespace App\Controller;
 
-use Core\Controllers\Controller;
+use Core\Controller;
 use Slim\Http\Request;
 use Slim\Http\Response;
 
