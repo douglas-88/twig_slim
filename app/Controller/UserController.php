@@ -51,8 +51,8 @@ class UserController extends Controller
 
        $validate = new Validate();
        $data = $validate->validate([
-           "nome"     => "required",
-           "email"    => "required:email",
+           "nome"     => "required:max@5",
+           "email"    => "required:email:unique@users",
            "telefone" => "required"
        ]);
 

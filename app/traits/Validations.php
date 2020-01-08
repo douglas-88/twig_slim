@@ -40,6 +40,16 @@ trait Validations
 
     }
 
+    /**
+     * Verifica se o campo possui determinado tamanho de caracteres.
+     * @var void
+     */
+    protected function max($field,$param){
+        if(strlen($_POST[$field]) > $param){
+            $this->erros[$field][] = flash($field, error("Favor preencha esse campo com até {$param} caracteres."));
+        }
+    }
+
 
     /**
      * Verifica se o valor informado já não existe cadastrado no Banco de Dados

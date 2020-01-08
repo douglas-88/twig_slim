@@ -11,6 +11,7 @@ class Flash
 
          if(!isset($_SESSION[$index])){
              $_SESSION[$index] = $message;
+             return $_SESSION[$index];
          }
 
      }

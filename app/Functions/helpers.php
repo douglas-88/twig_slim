@@ -26,7 +26,7 @@ function path(){
 
 function flash($field,$message){
 
-    Flash::add($field,$message);
+    return Flash::add($field,$message);
 
 }
 

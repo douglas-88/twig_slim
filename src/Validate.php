@@ -17,6 +17,8 @@ class Validate
 
         foreach($rules as $field => $validations){
 
+            $validations = $this->validatingWithParameters($field,$validations);
+
             if($this->hasOneValidation($validations)){
                $this->$validations($field);
             }
@@ -37,6 +39,24 @@ class Validate
 
     private function hasTwoOrMoreValidation($validation){
         return substr_count($validation,":") >= 1;
+    }
+
+    private function validatingWithParameters($field,$validations){
+        if(substr_count($validations,"@") > 0){
+            $validation = explode(":",$validations);
+
+            foreach ($validation as $key => $value) {
+                if(substr_count($value,"@") > 0){
+                    list($method,$param) = explode("@",$value);
+                    $this->$method($field,$param);
+                    unset($validation[$key]);
+                    $validations = implode(":",$validation);
+                }
+            }
+
+        }
+
+        return $validations;
     }
 
 
