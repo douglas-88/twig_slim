@@ -25,4 +25,14 @@ use App\traits\Create;
         return $stmt->fetchAll();
     }
 
+    public function find($field,$value){
+        $find = "SELECT * FROM {$this->table} WHERE {$field} =:{$field}";
+        $stmt = $this->connection->prepare($find);
+        $stmt->bindValue(":{$field}",$value);
+        $stmt->execute();
+        $find = $stmt->fetch();
+
+        return (isset($find)) ? true : false;
+    }
+
 }

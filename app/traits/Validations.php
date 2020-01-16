@@ -56,8 +56,13 @@ trait Validations
      * a fim de evitar duplicidade.
      * @var void
      */
-    protected function unique(){
-
+    protected function unique($field,$model){
+         $model = "app\\Model\\".ucfirst($model);
+         $model = new $model;
+         $unique = $model->find($field,$_POST[$field]);
+         if($unique){
+             $this->erros[$field][] = flash($field, error("Já existe um cadastro com esse valor."));
+         }
     }
 
     public function hasErros(){
