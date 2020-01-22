@@ -36,9 +36,9 @@ class UserController extends Controller
      * Exibe o formulário de criação de usuário
      * Método de requisição: GET
      */
-    public function create(){
+    public function create($data = []){
 
-       $this->view("cadastro");
+       $this->view("cadastro",["post" => (!empty($data)) ? $data : ""]);
 
    }
 
@@ -51,14 +51,13 @@ class UserController extends Controller
 
        $validate = new Validate();
        $data = $validate->validate([
-           "nome"     => "required:max@5",
+           "nome"     => "required:max@3",
            "email"    => "required:email:unique@user",
            "telefone" => "required"
        ]);
 
        if($validate->hasErros()){
-          back();
-          exit;
+           $this->create($_POST);
        }
 
 

@@ -4,6 +4,7 @@
 namespace Core;
 
 use App\traits\Validations;
+use App\traits\Sanitize;
 
 /**
  * Class Validate
@@ -11,9 +12,10 @@ use App\traits\Validations;
  */
 class Validate
 {
-    use Validations;
+    use Validations,Sanitize;
 
     public function validate($rules){
+
 
         foreach($rules as $field => $validations){
 
@@ -30,6 +32,8 @@ class Validate
                 }
             }
         }
+
+        return $this->sanitize($_POST);
 
     }
 
