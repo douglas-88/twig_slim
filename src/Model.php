@@ -32,7 +32,8 @@ use App\traits\Create;
         $stmt->execute();
         $find = $stmt->fetch();
 
-        return (isset($find)) ? true : false;
+        return $find;
     }
+
 
 }
