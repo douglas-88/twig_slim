@@ -1,11 +1,30 @@
 {% extends 'master.html' %}
 
 {% block master %}
-    <h1>Página Home</h1>
-
-    <ul>
-        {% for user in users %}
-            <li>{{ user.id }} -> {{ user.nome }}</li>
-        {% endfor %}
-    </ul>
+<div class="row">
+    <div class="col">
+    <h1>Usuários</h1>
+    <a class="btn btn-secondary align-self-end" href="/users/create" target="_blank">NOVO</a>
+<table class="table">
+    <thead class="thead-dark">
+    <tr>
+        <th scope="col">ID</th>
+        <th scope="col">NOME</th>
+        <th scope="col">EMAIL</th>
+        <th scope="col">TELEFONE</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for user in users %}
+    <tr>
+        <td>{{ user.id }}</td>
+        <td>{{ user.nome }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.telefone }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+    </div>
+</div>
 {% endblock %}

@@ -18,7 +18,6 @@ trait Create
         try{
             $create->execute($attributes);
             $this->lastCreated = $this->connection->lastInsertId();
-            flash("message",success("Cadastro Efetuado com sucesso!"));
         }catch(\PDOException $e){
             $this->setErros($e->getMessage());
             flash("message",error("<span class='font-weight-bold'>Falha ao cadastrar</span>: ". $this->getErros()));

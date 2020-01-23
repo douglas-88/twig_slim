@@ -40,7 +40,7 @@ class UserController extends Controller
      * Método de requisição: GET
      */
     public function create(){
-
+        
        $this->view("cadastro");
 
    }
@@ -66,8 +66,14 @@ class UserController extends Controller
 
        $user = new User();
        $user->create($data);
-       Redirect::redirect("/");
-       exit;
+       if(empty($user->getErros())){
+           Redirect::redirect("/");
+           exit;
+       }else{
+           Redirect::redirect("/users/create");
+           exit;
+       }
+
 
    }
 
