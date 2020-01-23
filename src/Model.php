@@ -13,9 +13,6 @@ use App\traits\Create;
 
     use Create;
 
-    public $connect;
-
-
     public function all(){
 
         $sql  = "SELECT * FROM {$this->table}";

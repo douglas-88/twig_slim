@@ -12,4 +12,8 @@ $sent = new TwigFunction("sent",function($index){
     echo Flash::get("post_".$index);
 });
 
-return [$erros,$sent];
+$message =  new TwigFunction("message",function($index) {
+    echo Flash::get($index);
+});
+
+return [$erros,$sent,$message];
