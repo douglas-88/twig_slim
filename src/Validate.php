@@ -19,7 +19,6 @@ class Validate
 
         foreach($rules as $field => $validations){
 
-            flash("post_".$field,$_POST[$field]);
             $validations = $this->validatingWithParameters($field,$validations);
 
             if($this->hasOneValidation($validations)){

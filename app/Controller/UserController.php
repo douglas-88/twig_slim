@@ -9,6 +9,7 @@ use Core\Validate;
 use Slim\Http\Request;
 use Slim\Http\Response;
 use Core\Redirect;
+use Core\Flash;
 
 class UserController extends Controller
 {
@@ -60,16 +61,22 @@ class UserController extends Controller
        ]);
 
        if($validate->hasErros()){
+           foreach($data as $field => $value){
+               flash("post_".$field,$data[$field]);
+           }
            back();
            exit;
        }
 
        $user = new User();
        $user->create($data);
+
        if(empty($user->getErros())){
+           flash("message",success("Dados cadastrados com sucesso."));
            Redirect::redirect("/");
            exit;
        }else{
+           flash("message",error("<span class='font-weight-bold'>Falha ao cadastrar</span>: ". $user->getErros()));
            Redirect::redirect("/users/create");
            exit;
        }

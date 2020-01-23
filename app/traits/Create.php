@@ -20,7 +20,6 @@ trait Create
             $this->lastCreated = $this->connection->lastInsertId();
         }catch(\PDOException $e){
             $this->setErros($e->getMessage());
-            flash("message",error("<span class='font-weight-bold'>Falha ao cadastrar</span>: ". $this->getErros()));
         } finally {
             return $this;
         }
