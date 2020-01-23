@@ -8,6 +8,7 @@ use Core\Controller;
 use Core\Validate;
 use Slim\Http\Request;
 use Slim\Http\Response;
+use Core\Redirect;
 
 class UserController extends Controller
 {
@@ -30,6 +31,8 @@ class UserController extends Controller
                 "title" => "Listando Usuários"
             ]
         );
+
+
     }
 
     /**
@@ -51,7 +54,7 @@ class UserController extends Controller
 
        $validate = new Validate();
        $data = $validate->validate([
-           "nome"     => "required:max@3",
+           "nome"     => "required:max@30",
            "email"    => "required:email:unique@user",
            "telefone" => "required"
        ]);
@@ -61,6 +64,10 @@ class UserController extends Controller
            exit;
        }
 
+       $user = new User();
+       $user->create($data);
+       Redirect::redirect("/");
+       exit;
 
    }
 
