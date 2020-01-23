@@ -8,7 +8,8 @@ $erros = new TwigFunction("erros",function($index){
     echo Flash::get($index);
 });
 
+$sent = new TwigFunction("sent",function($index){
+    echo Flash::get("post_".$index);
+});
 
-return [
-    $erros
-];
+return [$erros,$sent];
