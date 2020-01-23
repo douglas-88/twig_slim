@@ -9,19 +9,19 @@
 <form action="/users/store" method="post">
     <div class="form-group">
         <label for="">Name</label>
-        <input type="text" name="nome" class="form-control" value="{{ post.nome }}">
+        <input type="text" name="nome" class="form-control" value="{{ sent('nome') }}">
         {{ erros("nome") }}
     </div>
 
     <div class="form-group">
         <label for="">Email</label>
-        <input type="text" name="email" class="form-control" value="{{ post.email }}">
+        <input type="text" name="email" class="form-control" value="{{ sent('email') }}">
         {{ erros("email") }}
     </div>
 
     <div class="form-group">
         <label for="">Telefone</label>
-        <input type="text" name="telefone" class="form-control" value="{{ post.telefone }}">
+        <input type="text" name="telefone" class="form-control" value="{{ sent('telefone') }}">
         {{ erros("telefone") }}
     </div>
 

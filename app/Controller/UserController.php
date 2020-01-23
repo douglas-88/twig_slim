@@ -36,9 +36,9 @@ class UserController extends Controller
      * Exibe o formulário de criação de usuário
      * Método de requisição: GET
      */
-    public function create($data = []){
+    public function create(){
 
-       $this->view("cadastro",["post" => (!empty($data)) ? $data : ""]);
+       $this->view("cadastro");
 
    }
 
@@ -57,7 +57,8 @@ class UserController extends Controller
        ]);
 
        if($validate->hasErros()){
-           $this->create($_POST);
+           back();
+           exit;
        }
 
 
