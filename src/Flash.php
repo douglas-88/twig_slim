@@ -26,4 +26,8 @@ class Flash
          return $message ?? "";
      }
 
+     public static function clearSession($index){
+         unset($_SESSION[$index]);
+     }
+
 }
