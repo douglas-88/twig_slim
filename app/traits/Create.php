@@ -7,6 +7,10 @@ trait Create
 {
     public $lastCreated;
 
+    /*
+     * Método responsável por efetuar a criação de qualquer dado no Banco de Dados.
+     * Retorno: object
+     */
     public function create(array $attributes):object {
 
         $sql  = "INSERT INTO {$this->table}";
@@ -23,8 +27,6 @@ trait Create
         } finally {
             return $this;
         }
-
-
 
     }
 }

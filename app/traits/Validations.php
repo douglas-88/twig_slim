@@ -59,7 +59,7 @@ trait Validations
     protected function unique($field,$model){
          $model = "app\\Model\\".ucfirst($model);
          $model = new $model;
-         $unique = $model->find($field,$_POST[$field]);
+         $unique = $model->where($field,$_POST[$field]);
          if($unique){
              $this->erros[$field][] = flash($field, error("Já existe um cadastro com esse valor."));
          }
