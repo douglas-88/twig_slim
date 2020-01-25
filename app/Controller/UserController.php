@@ -26,6 +26,7 @@ class UserController extends Controller
      */
     public function index(){
 
+
         $this->view("home",
             [
                 "users" => $this->users->all(),
@@ -88,9 +89,9 @@ class UserController extends Controller
      * Exibe o formulário de edição de usuário
      * Método de requisição: GET
      */
-    public function edit($id)
+    public function edit($request,$response,$args)
     {
-
+       dd($args);
     }
 
 

@@ -3,6 +3,7 @@
 
 namespace Core;
 use App\traits\Create;
+use App\traits\Read;
 
 /**
  * Class Model
@@ -11,7 +12,7 @@ use App\traits\Create;
  class Model extends Connection
 {
 
-    use Create;
+    use Create,Read;
 
     public function all(){
 
