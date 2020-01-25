@@ -12,8 +12,8 @@ trait View{
     protected function twig(){
 
         $loader     = new FilesystemLoader(__DIR__ . "/../../views");
-        $this->twig = new Environment($loader);
-
+        $this->twig = new Environment($loader, ['debug' => true]);
+        $this->twig->addExtension(new \Twig\Extension\DebugExtension());
     }
 
    protected function functions(){
