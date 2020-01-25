@@ -26,14 +26,12 @@ class UserController extends Controller
      */
     public function index(){
 
-
         $this->view("home",
             [
                 "users" => $this->users->all(),
                 "title" => "Listando Usuários"
             ]
         );
-
 
     }
 
@@ -69,10 +67,9 @@ class UserController extends Controller
            exit;
        }
 
-       $user = new User();
-       $user->create($data);
+       $this->users->create($data);
 
-       if(empty($user->getErros())){
+       if(empty($this->users->getErros())){
            flash("message",success("Dados cadastrados com sucesso."));
            Redirect::redirect("/");
            exit;
@@ -91,7 +88,13 @@ class UserController extends Controller
      */
     public function edit($request,$response,$args)
     {
-        
+        $user = (array) $this->users->select()->where("id",$args["id"])->first();
+
+        foreach($user as $field => $value){
+            flash("post_".$field,$user[$field]);
+        }
+
+        $this->view("editar");
     }
 
 
@@ -99,9 +102,36 @@ class UserController extends Controller
      * Processa o formulário de edição de usuário
      * Método de requisição: POST
      */
-    public function update()
+    public function update($request,$response,$args)
     {
 
+        $validate = new Validate();
+        $data = $validate->validate([
+            "nome"     => "required:max@20",
+            "email"    => "required:email",
+            "telefone" => "required"
+        ]);
+
+        if($validate->hasErros()){
+            foreach($data as $field => $value){
+                flash("post_".$field,$data[$field]);
+            }
+            back();
+            exit;
+        }
+
+        $this->users->find("id",$args["id"])->update($data);
+
+
+        if(empty($this->users->getErros())){
+            flash("message",success("Dados atualizados com sucesso."));
+            Redirect::redirect("/");
+            exit;
+        }else{
+            flash("message",error("<span class='font-weight-bold'>Falha ao atualizar</span>: ". $this->users->getErros()));
+            Redirect::redirect("/users/edit/{$args["id"]}");
+            exit;
+        }
     }
 
 
@@ -109,9 +139,16 @@ class UserController extends Controller
      * Remove um usuário
      * Método de requisição: POST
      */
-    public function remove($id)
+    public function delete($request,$response,$args)
     {
-
+       $deleted = $this->users->find("id",$args["id"])->delete();
+       if($deleted){
+           flash("message",success("Dados removidos com sucesso."));
+       }else{
+           flash("message",error("Falha ao deletar dados."));
+       }
+        Redirect::redirect("/");
+        exit;
     }
 
 }

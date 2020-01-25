@@ -6,7 +6,7 @@ use \PDO;
 
 abstract class Connection
 {
-   private   $erros = null;
+   private   $erros;
    private   $host;
    private   $dbname;
    private   $userdb;

@@ -3,6 +3,12 @@
 use Core\Flash;
 use Core\Redirect;
 
+function dd($data){
+
+    var_dump($data);
+    exit;
+
+}
 
 function json($data) {
     header('Content-Type: application/json');
