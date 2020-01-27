@@ -16,18 +16,11 @@ use App\traits\Delete;
 
     protected $field;
     protected $value;
+    protected $sql;
+    protected $binds;
 
     use Create,Read,Update,Delete;
 
-
-    public function all(){
-
-        $sql  = "SELECT * FROM {$this->table}";
-        $stmt = $this->connection->prepare($sql);
-        $stmt->execute();
-
-        return $stmt->fetchAll();
-    }
 
     public function find($field,$value){
 
