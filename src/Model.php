@@ -22,15 +22,6 @@ use App\traits\Delete;
     use Create,Read,Update,Delete;
 
 
-    public function all(){
-
-        $sql  = "SELECT * FROM {$this->table}";
-        $stmt = $this->connection->prepare($sql);
-        $stmt->execute();
-
-        return $stmt->fetchAll();
-    }
-
     public function find($field,$value){
 
         if((!isset($field) || empty($field))|| (!isset($value) || empty($value))){
