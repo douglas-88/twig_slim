@@ -16,6 +16,8 @@ use App\traits\Delete;
 
     protected $field;
     protected $value;
+    protected $sql;
+    protected $binds;
 
     use Create,Read,Update,Delete;
 

@@ -7,8 +7,6 @@ namespace App\traits;
 
 trait Read
 {
-    private $sql;
-    private $binds;
 
     public function select($fields = "*"):object{
        $this->sql = "SELECT {$fields} FROM {$this->table}";
