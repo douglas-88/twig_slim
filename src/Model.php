@@ -18,6 +18,7 @@ use App\traits\Delete;
     protected $value;
     protected $sql;
     protected $binds;
+    protected $paginate;
 
     use Create,Read,Update,Delete;
 

@@ -3,13 +3,13 @@
 
 namespace App\traits;
 
-
-
 use App\Model\User;
+use Core\Paginate;
+
 
 trait Read
 {
-
+    use Links;
     /**
      * Método responsável por
      * @param string $fields
@@ -28,6 +28,16 @@ trait Read
         $select = $this->connection->prepare($this->sql);
         $select->execute($this->binds);
         return $select;
+    }
+
+    /**
+     * Método responsável por Obter a quantidade de registros para a paginação.
+     * @return Int
+     */
+    public function count():int {
+        $select = $this->connection->prepare($this->sql);
+        $select->execute($this->binds);
+        return $select->rowCount();
     }
 
     /**
@@ -82,5 +92,15 @@ trait Read
         $this->sql .= " WHERE {$field} {$sinal} :{$field}";
 
         return $this;
+    }
+
+    public function paginate($perPage){
+
+       $this->paginate = new Paginate();
+       $this->paginate->getRegisters($this->count());
+       $this->paginate->paginate($perPage);
+       $this->sql .= $this->paginate->sqlPaginate();
+
+       return $this;
     }
 }
