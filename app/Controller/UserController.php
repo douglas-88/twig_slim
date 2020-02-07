@@ -29,7 +29,8 @@ class UserController extends Controller
         $this->view("home",
             [
                 "users" => $this->users->select()->paginate(2)->get(),
-                "title" => "Listando Usuários"
+                "title" => "Listando Usuários",
+                "links" => $this->users->links()
             ]
         );
 

@@ -9,7 +9,7 @@ use Core\Paginate;
 
 trait Read
 {
-    use Links;
+
     /**
      * Método responsável por
      * @param string $fields
@@ -102,5 +102,9 @@ trait Read
        $this->sql .= $this->paginate->sqlPaginate();
 
        return $this;
+    }
+
+    public function links(){
+        return $this->paginate->links();
     }
 }
