@@ -5,6 +5,9 @@
     <div class="col">
         <h1>Usuários</h1>
         <a class="btn btn-primary my-3" href="/users/create" >NOVO</a>
+        <form method="GET" class="d-flex justify-content-end">
+            <input class="form-control col-3" type="text" name="s" placeholder="Pesquisar" aria-label="Search">
+        </form>
         {{ message("message") }}
         <table class="table table-striped">
             <thead class="thead-dark">
