@@ -4,6 +4,8 @@
 namespace Core;
 
 
+use App\traits\Links;
+
 class Paginate
 {
     private $page;
@@ -11,6 +13,8 @@ class Paginate
     private $offSet;
     private $pages;
     private $registers;
+
+    use Links;
 
     private function current(){
         $this->page = filter_input(INPUT_GET,"page",FILTER_SANITIZE_NUMBER_INT) ?? 1;
