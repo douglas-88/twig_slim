@@ -99,6 +99,7 @@ trait Read
        $this->paginate = new Paginate();
        $this->paginate->getRegisters($this->count());
        $this->paginate->paginate($perPage);
+
        $this->sql .= $this->paginate->sqlPaginate();
 
        return $this;
@@ -106,5 +107,22 @@ trait Read
 
     public function links(){
         return $this->paginate->links();
+    }
+
+    public function busca($fields){
+
+       $fields = explode(",",$fields);
+
+       $this->sql .= " WHERE ";
+
+       foreach($fields as $field){
+           $this->sql .= " {$field} LIKE :{$field} OR ";
+           $this->binds[$field] = "%".busca()."%";
+       }
+
+       $this->sql = rtrim($this->sql,"OR ");
+
+       return $this;
+
     }
 }

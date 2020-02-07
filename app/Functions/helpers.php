@@ -53,3 +53,7 @@ function success($message){
 function back(){
     Redirect::back();
 }
+
+function busca(){
+    return filter_input(INPUT_GET,"s",FILTER_SANITIZE_STRING);
+}

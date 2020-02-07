@@ -37,7 +37,7 @@ class Paginate
     }
 
     public function sqlPaginate(){
-        return " LIMIT {$this->perPage} OFFSET {$this->offSet} ";
+       return " LIMIT {$this->perPage} OFFSET {$this->offSet} ";
     }
 
     public function paginate($perPage){
@@ -46,4 +46,5 @@ class Paginate
         $this->offSet();
         $this->pages();
     }
+
 }
