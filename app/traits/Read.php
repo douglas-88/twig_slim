@@ -4,6 +4,7 @@
 namespace App\traits;
 
 use App\Model\User;
+use Core\Model;
 use Core\Paginate;
 
 
@@ -15,7 +16,7 @@ trait Read
      * @param string $fields
      * @return User
      */
-    public function select($fields = "*"):User{
+    public function select($fields = "*"){
        $this->sql = "SELECT {$fields} FROM {$this->table}";
        return $this;
     }
@@ -65,7 +66,7 @@ trait Read
      * @return $this
      * @throws \Exception
      */
-    public function where():User{
+    public function where():Model{
         $num_args = func_num_args();
         $args     = func_get_args();
 
