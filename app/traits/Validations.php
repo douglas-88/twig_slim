@@ -15,7 +15,7 @@ trait Validations
      */
     protected function required($field){
 
-        if(empty($_POST[$field])){
+        if(empty($_POST[$field]) OR !isset($_POST[$field])){
             $this->erros[$field][] = flash($field, error("Favor preencha esse campo"));
         }
     }
@@ -68,6 +68,10 @@ trait Validations
     public function hasErros(){
 
        return !empty($this->erros);
+    }
+
+    public function getErros(){
+        return $this->erros;
     }
 
 }

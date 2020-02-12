@@ -5,6 +5,8 @@ namespace App\Controller;
 
 use App\Model\User;
 use Core\Controller;
+use Core\Login;
+use Core\Password;
 use Core\Validate;
 use Slim\Http\Request;
 use Slim\Http\Response;
@@ -28,13 +30,14 @@ class UserController extends Controller
 
         $this->view("home",
             [
-                "users" => $this->users->select()->busca("nome,email")->paginate(5)->get(),
+                "users" => $this->users->select()->busca("nome,email")->paginate(1)->get(),
                 "title" => "Listando Usuários",
                 "links" => $this->users->links()
             ]
         );
 
     }
+
 
     /**
      * Exibe o formulário de criação de usuário

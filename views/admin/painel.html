@@ -1,0 +1,7 @@
+{% extends 'master.html' %}
+
+{% block master %}
+<h1>{{ title }}</h1>
+<h3>Bem vindo {{ admin().nome }}</h3>
+<a href="/logout">Sair do sistema</a>
+{% endblock %}

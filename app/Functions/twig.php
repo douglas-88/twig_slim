@@ -4,6 +4,7 @@ use Twig\TwigFunction;
 use Core\Flash;
 use Core\Validate;
 
+
 $erros = new TwigFunction("erros",function($index){
     echo Flash::get($index);
 });
@@ -18,4 +19,10 @@ $message =  new TwigFunction("message",function($index) {
 
 });
 
-return [$erros,$sent,$message];
+$admin =  new TwigFunction("admin",function() {
+
+    return (new \App\Model\Admin())->user();
+
+});
+
+return [$erros,$sent,$message,$admin];
