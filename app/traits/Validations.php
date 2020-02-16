@@ -65,6 +65,18 @@ trait Validations
          }
     }
 
+    protected function image($field){
+        if(empty($_FILES[$field]) OR !isset($_FILES[$field])){
+            $this->erros[$field][] = flash($field, error("Favor preencha esse campo"));
+        }else{
+            $extension = pathinfo($_FILES[$field]["name"],PATHINFO_EXTENSION);
+
+            if(!in_array($extension,["jpeg","jpg","png"])){
+                $this->erros[$field][] = flash($field, error("Não é permitido upload de arquivos com a extensão: .{$extension}"));
+            }
+        }
+    }
+
     public function hasErros(){
 
        return !empty($this->erros);

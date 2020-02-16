@@ -7,7 +7,8 @@ namespace Core;
 class Redirect
 {
     public static function redirect($target){
-        return header("Location:{$target}");
+        header("Location:{$target}");
+        exit;
     }
 
     public static function back(){

@@ -11,7 +11,7 @@ class Admin extends Model
     protected $table = "admin";
 
     public function user(){
-        $id = $_SESSION["id_admin"];
+        $id = $_SESSION["loginInfo"]["idUser"];
         $user = $this->select()->where("id",$id)->first();
 
         return $user;
