@@ -8,6 +8,7 @@ use Twig\Environment;
 trait View{
 
     protected $twig;
+    protected $templateAdmin = "../assets/templates";
 
     protected function twig(){
 

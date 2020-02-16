@@ -12,7 +12,8 @@
         "twig/twig": "^3.0",
         "vlucas/phpdotenv": "^4.1",
         "dopesong/slim-whoops": "^2.3",
-        "robmorgan/phinx": "^0.11.4"
+        "robmorgan/phinx": "^0.11.4",
+        "intervention/image": "^2.5"
     },
     "autoload": {
         "psr-4": {

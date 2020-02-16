@@ -2,53 +2,62 @@
 
 
 namespace App\Controller\Admin;
-use App\Model\User;
-use App\Model\Admin;
+
 use Core\Controller;
-use Core\Redirect;
-use Core\Validate;
-use Core\Login;
+use Slim\Http\Request;
+use Slim\Http\Response;
 
 class AdminController extends Controller
 {
-   public function index(){
-       session_destroy();
-       var_dump($_SESSION);
-       $this->view("admin/login");
-   }
+    /**
+     * Página Inicial
+     */
+    public function index() {
 
-   public function store(){
-       $validate = new Validate();
-       $data = $validate->validate([
-           "email"    => "required:email",
-           "senha"    => "required"
-       ]);
+        $this->view("admin/master",["template_admin" => $this->templateAdmin]);
 
-       if($validate->hasErros()){
-           foreach($data as $field => $value){
-               flash("post_".$field,$data[$field]);
-           }
-           back();
-           exit;
-       }
+    }
 
-       $login = new Login("admin");
-       $loginIn = $login->login($data,new Admin);
+    /**
+     * Exibe o formulário de criação
+     */
+    public function create() {
+        echo 'create';
+    }
 
-       if($loginIn){
-           Redirect::redirect("/painel");
-           exit;
-       }else{
-           Redirect::redirect("/admin");
-           exit;
-       }
+    /**
+     * Processa Formulário de criação
+     */
+    public function store(Request $request,Response $response) {
+        echo 'store';
+    }
 
-   }
+    /**
+     * Exibe dado do Banco de dados
+     */
+    public function show($id) {
+        echo 'show';
+    }
 
-   public function destroy(){
+    /**
+     * Exibe o formulário de edição
+     */
+    public function edit($id) {
+        echo 'edit';
+    }
 
-       $login = new Login("admin");
-       $login->logout();
+    /**
+     * Processa o formulário de edição
+     */
+    public function update(Request $request,Response $response,$args) {
+        echo 'update';
+    }
 
-   }
+    /**
+     * Remove dados do Banco
+     */
+    public function destroy($id) {
+        echo 'destroy';
+    }
+
 }

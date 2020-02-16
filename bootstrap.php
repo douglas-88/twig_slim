@@ -5,6 +5,7 @@ require __DIR__ . "/vendor/autoload.php";
 use Slim\App;
 use Dotenv\Dotenv;
 use Core\Whoops;
+use Core\Middleware;
 
 
 $dotenv = Dotenv::createImmutable(__DIR__);
@@ -16,19 +17,23 @@ $config['addContentLengthHeader'] = false;
 $app = new App(['settings' => $config]);
 $container = $app->getContainer();
 
-$container['UserController'] = function ($container) {
-    $service = new \App\Controller\UserController;
-    return $service;
-};
+
 $container['AdminController'] = function ($container) {
     $service = new \App\Controller\Admin\AdminController;
     return $service;
 };
 
-$container["PainelController"] = function ($container) {
-    $service = new \App\Controller\Admin\PainelController;
+$container['ProfessorController'] = function ($container) {
+    $service = new \App\Controller\Admin\ProfessorController();
+    return $service;
+};
+
+$container['LoginController'] = function ($container) {
+    $service = new \App\Controller\Admin\LoginController();
     return $service;
 };
 
 $whoops = new Whoops();
 $whoops->run($container);
+
+$middleware = new Middleware();

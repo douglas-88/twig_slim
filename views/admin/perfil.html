@@ -1,0 +1,58 @@
+{% extends 'admin/master.html' %}
+
+{% block master %}
+<div class="row">
+    <div class="col-md-3">
+
+        <!-- Profile Image -->
+        <div class="card card-primary card-outline">
+            <div class="card-body box-profile">
+                <div class="text-center">
+                    <img class="profile-user-img img-fluid img-circle"
+                         src="{{ template_admin }}/dist/img/user4-128x128.jpg"
+                         alt="User profile picture">
+                </div>
+
+                <h3 class="profile-username text-center">Alciléia</h3>
+
+                <p class="text-muted text-center">Admin</p>
+
+
+                <a href="#" class="btn btn-primary btn-block"><b>Alterar Foto</b></a>
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+    </div>
+    <!-- /.col -->
+    <div class="col-md-9">
+        <!-- jquery validation -->
+        <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title">Dados do Usuário</h3>
+            </div>
+            <!-- /.card-header -->
+            <!-- form start -->
+            <form role="form" id="quickForm">
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Email</label>
+                        <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Informe seu email">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Senha</label>
+                        <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Informe sua senha">
+                    </div>
+                </div>
+                <!-- /.card-body -->
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary">Alterar</button>
+                </div>
+            </form>
+        </div>
+        <!-- /.card -->
+    </div>
+    <!-- /.col -->
+</div>
+<!-- /.row -->
+{% endblock %}
