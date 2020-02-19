@@ -17,9 +17,9 @@ environments:
     development:
         adapter: mysql
         host: localhost
-        name: projeto_resgate
+        name: twig_slim
         user: root
-        pass: '1475'
+        pass: 'nokia5233'
         port: 3306
         charset: utf8
 

@@ -11,7 +11,7 @@ use Core\Redirect;
 use Core\Validate;
 use Slim\Http\Request;
 use Slim\Http\Response;
-use App\Model\Admin;
+use App\Model\User;
 
 class LoginController extends Controller
 {
@@ -33,7 +33,7 @@ class LoginController extends Controller
     }
 
     /**
-     * Processa Formulário de criação
+     * Processa Formulário de Login
      */
     public function store(Request $request, Response $response)
     {

@@ -3,7 +3,7 @@
 
 namespace Core;
 
-use App\Model\Admin;
+use App\Model\User;
 use Slim\Http\Request;
 use Slim\Http\Response;
 use Core\Login;
