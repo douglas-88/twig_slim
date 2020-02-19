@@ -12,8 +12,7 @@ class Middleware
 {
 
 
-
-   public function auth($role){
+    public function auth($role){
 
        $config = Load::file("/config.php");
 
@@ -37,4 +36,26 @@ class Middleware
        return $admin;
 
    }
+
+
+   public function checkLoggedIn()
+   {
+
+       $config = Load::file("/config.php");
+
+       $checkLogin = function (Request $request, Response $response, $next) use($config){
+           if(isset($_SESSION["loginInfo"])) {
+               foreach ($config["permission"] as $key => $value) {
+                   if ($_SESSION["loginInfo"]["roleUser"] == $key) {
+                       return $response->withRedirect($value);
+                   }
+               }
+           }else{
+               return $response = $next($request, $response);
+           }
+       };
+
+       return $checkLogin;
+   }
+
 }

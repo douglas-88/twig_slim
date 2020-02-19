@@ -13,7 +13,6 @@ class User extends Model
     public function user(){
         $id = $_SESSION["loginInfo"]["idUser"];
         $user = $this->select()->where("id",$id)->first();
-
         return $user;
     }
 }

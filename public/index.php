@@ -3,7 +3,7 @@
 require __DIR__ . "/../bootstrap.php";
 //var_dump($_SESSION);
 
-$app->get("/login","LoginController:index");
+$app->get("/login","LoginController:index")->add($middleware->checkLoggedIn());
 $app->post("/login","LoginController:store");
 $app->get("/logout","LoginController:destroy");
 
