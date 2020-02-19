@@ -24,9 +24,28 @@ class UserSeeder extends AbstractSeed
                 'avatar'   => '',
                 'role_id'  => 1,
                 'created'  => date('Y-m-d H:i:s')
+            ],
+            [
+                'name'     => 'professor',
+                'email'    => 'professor@gmail.com',
+                'password' => '$2y$12$o0vmN5EMkgjEiBxtRot3T.JN.Yvhu1TxYpI3qfG0Xl4QvxImE0.ZC',
+                'phone'    => '21993725886',
+                'avatar'   => '',
+                'role_id'  => 2,
+                'created'  => date('Y-m-d H:i:s')
+            ],
+            [
+                'name'     => 'cliente',
+                'email'    => 'cliente@gmail.com',
+                'password' => '$2y$12$o0vmN5EMkgjEiBxtRot3T.JN.Yvhu1TxYpI3qfG0Xl4QvxImE0.ZC',
+                'phone'    => '21993725886',
+                'avatar'   => '',
+                'role_id'  => 3,
+                'created'  => date('Y-m-d H:i:s')
             ]
         ];
 
+        $this->table('users')->truncate();
         $users = $this->table('users');
         $users->insert($data)->saveData();
     }
