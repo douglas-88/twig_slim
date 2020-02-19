@@ -21,7 +21,7 @@ $message =  new TwigFunction("message",function($index) {
 
 $admin =  new TwigFunction("admin",function() {
 
-    return (new \App\Model\Admin())->user();
+    return (new \App\Model\User())->user();
 
 });
 

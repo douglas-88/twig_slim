@@ -6,9 +6,9 @@ namespace App\Model;
 use Core\Model;
 
 
-class Admin extends Model
+class User extends Model
 {
-    protected $table = "admin";
+    protected $table = "users";
 
     public function user(){
         $id = $_SESSION["loginInfo"]["idUser"];
