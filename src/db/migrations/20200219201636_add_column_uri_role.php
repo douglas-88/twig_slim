@@ -2,7 +2,7 @@
 
 use Phinx\Migration\AbstractMigration;
 
-class CreateUsersTable extends AbstractMigration
+class AddColumnUriRole extends AbstractMigration
 {
     /**
      * Change Method.
@@ -31,15 +31,8 @@ class CreateUsersTable extends AbstractMigration
      */
     public function change()
     {
-        $table = $this->table("users");
-        $table->addColumn("name","string",["limit" => 255]);
-        $table->addColumn("password","string",["limit" => 60]);
-        $table->addColumn("email","string",["limit" => 70]);
-        $table->addColumn("phone","string",["limit" => 11]);
-        $table->addColumn("avatar","string",["limit" => 300]);
-        $table->addColumn('role_id', 'integer', ['null' => false]);
-        $table->addForeignKey('role_id', 'roles', 'id',['delete'=> 'SET_NULL']);
-        $table->addColumn("created",'timestamp', ['default' => 'CURRENT_TIMESTAMP']);
-        $table->create();
+        $table = $this->table("roles");
+        $table->addColumn("uri","string",["limit" => 255]);
+        $table->save();
     }
 }
