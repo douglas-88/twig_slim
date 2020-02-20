@@ -37,7 +37,7 @@ class CreateUsersTable extends AbstractMigration
         $table->addColumn("email","string",["limit" => 70]);
         $table->addColumn("phone","string",["limit" => 11]);
         $table->addColumn("avatar","string",["limit" => 300]);
-        $table->addColumn('role_id', 'integer', ['null' => false]);
+        $table->addColumn('role_id', 'integer', ['null' => true]);
         $table->addForeignKey('role_id', 'roles', 'id',['delete'=> 'SET_NULL']);
         $table->addColumn("created",'timestamp', ['default' => 'CURRENT_TIMESTAMP']);
         $table->create();

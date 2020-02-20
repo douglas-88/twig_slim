@@ -33,6 +33,11 @@ $container['LoginController'] = function ($container) {
     return $service;
 };
 
+$container['PasswordRecoveryController'] = function ($container) {
+    $service = new \App\Controller\Admin\PasswordRecoveryController();
+    return $service;
+};
+
 $whoops = new Whoops();
 $whoops->run($container);
 

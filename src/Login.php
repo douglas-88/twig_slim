@@ -42,8 +42,6 @@ class Login
 
     public function logout(){
 
-
-
         Redirect::redirect("/admin");
         exit;
     }
