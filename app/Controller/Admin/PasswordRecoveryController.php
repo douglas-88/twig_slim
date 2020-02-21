@@ -8,11 +8,12 @@ use App\Model\User;
 use Core\Controller;
 use Core\Load;
 use Core\Validate;
+use Core\PasswordRecovery;
 
 class PasswordRecoveryController extends Controller
 {
 
-    CONST SECRET = "";
+    CONST SECRET = "DEUSNOCONTROLE!!";
 
     public function forgot(){
 
@@ -41,8 +42,10 @@ class PasswordRecoveryController extends Controller
             echo("Não achou o e-mail: {$data["email"]}");
             return false;
         }else{
-            $code = base64_encode(openssl_encrypt($dataRecovery["idrecovery"],"AES-128-ECB",User::SECRET));
-            dd($user);
+
+            $recovery = new PasswordRecovery();
+            dd($recovery->sendMessageLink($user));
+
         }
 
     }
