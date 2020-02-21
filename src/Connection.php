@@ -28,7 +28,6 @@ abstract class Connection
         try{
 
             $this->connection = new PDO("mysql:host={$this->host};dbname={$this->dbname};charset=utf8", "{$this->userdb}", "$this->passworddb",$options);
-
         }catch(\PDOException $e){
             $this->erros = $e->getMessage();
         }

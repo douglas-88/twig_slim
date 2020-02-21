@@ -1,5 +1,6 @@
 <?php
 
+use App\Controller\Admin\PasswordRecoveryController;
 use Core\Flash;
 use Core\Redirect;
 
@@ -55,4 +56,14 @@ function back(){
 
 function busca(){
     return filter_input(INPUT_GET,"s",FILTER_SANITIZE_STRING);
+}
+
+function recoveryPasswordGenerate(){
+
+    $hash = md5(rand());
+    $code = base64_encode(openssl_encrypt($hash,"AES-128-ECB",PasswordRecoveryController::SECRET));
+    $root = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/';
+    $url = $root . "recovery-password/code={$code}";
+
+    return $url;
 }

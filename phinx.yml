@@ -19,7 +19,7 @@ environments:
         host: localhost
         name: twig_slim
         user: root
-        pass: 'nokia5233'
+        pass: '1475'
         port: 3306
         charset: utf8
 
