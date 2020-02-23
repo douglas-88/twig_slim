@@ -10,7 +10,7 @@ use PHPMailer\PHPMailer\SMTP;
 class Email extends PHPMailer
 {
 
-    public function __construct($html,$exceptions = null)
+    public function __construct($exceptions = null)
     {
 
         $this->SMTPDebug = SMTP::DEBUG_OFF;
@@ -24,14 +24,19 @@ class Email extends PHPMailer
         $this->isHTML(true);
         $this->CharSet = 'UTF-8';
         $this->setLanguage("pt_br");
-        $this->setFrom("dcdouglas64@gmail.com");
-        $this->addAddress("conveswebtecnologia@gmail.com");
-        $this->addAddress("douglasflamengo_07@hotmail.com");
         $this->addAddress("dcdouglas64@gmail.com");
-        $this->Subject = "Recuperação de senha";
-        $this->Body = $html;
+       
 
         parent::__construct($exceptions);
+    }
+
+    public function enviar($destinatario,$assunto,$message){
+
+        $this->setFrom("dcdouglas64@gmail.com");
+        $this->Subject = $assunto;
+        $this->Body    = $message;
+
+        return $this->send();
     }
 
 }

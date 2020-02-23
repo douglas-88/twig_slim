@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Contato do Site</title>
+</head>
+<body>
+       <div>
+        <h1 style="text-align: center;">{{ assunto }}</h1><br>
+        <p>
+            Olá,{{ user->name }} tudo bem? 
+        </p>
+        <p>
+            Para alterar sua senha de usuário no site {{ site }}, clique no link abaixo:<br>
+            {{ link }}
+        </p>
+        <p>
+            Obs: Esse link tem validade de 1h.
+        </p>
+    </div>
+</body>
+</html>

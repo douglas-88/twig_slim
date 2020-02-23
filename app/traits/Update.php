@@ -30,4 +30,18 @@ trait Update
         }
 
     }
+
+    public function update2(array $attributes){
+        $this->sql = "UPDATE {$this->table} SET ";
+
+        foreach ($attributes as $field => $value){
+            $this->sql .= "{$field} =:{$field},";
+        }
+
+        $this->sql = rtrim($this->sql,",");
+        $this->binds = $attributes;
+
+        return $this;
+
+    }
 }

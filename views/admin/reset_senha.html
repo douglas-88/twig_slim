@@ -8,38 +8,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="{{ template_admin }}/plugins/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="/{{ template_admin }}/plugins/fontawesome-free/css/all.min.css">
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- icheck bootstrap -->
-    <link rel="stylesheet" href="{{ template_admin }}/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <link rel="stylesheet" href="/{{ template_admin }}/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
     <!-- Theme style -->
-    <link rel="stylesheet" href="{{ template_admin }}/dist/css/adminlte.min.css">
+    <link rel="stylesheet" href="/{{ template_admin }}/dist/css/adminlte.min.css">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
 <body class="hold-transition login-page">
 <div class="login-box">
     <div class="login-logo">
-        <a href="../../index2.html"><b>PROJETO RESGATE</b></a>
+        <a href="/"><b>PROJETO RESGATE</b></a>
     </div>
     <!-- /.login-logo -->
     <div class="card">
         <div class="card-body login-card-body">
-            <p class="login-box-msg">Login</p>
-
-            <form action="/login" method="POST">
-                <div class="input-group mb-3">
-                    <input type="email" class="form-control" placeholder="Email" name="email" value="{{ sent('email') }}">
-                    <div class="input-group-append">
-                        <div class="input-group-text">
-                            <span class="fas fa-envelope"></span>
-                        </div>
-                    </div>
-                </div>
-                {{ erros("email") }}
+            <p class="login-box-msg">
+                Você está a apenas um passo de sua nova senha, crie sua nova senha agora.
+            </p>
+            <form action="/reset-password/user/{{ code }}" method="post">
                 <div class="input-group mb-3" id="show_hide_password">
-                    <input type="password" class="form-control" placeholder="Senha" name="password" value="{{ sent('password') }}">
+                    <input type="password" class="form-control" name="password" placeholder="Senha" >
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-lock"></span>
@@ -47,26 +39,18 @@
                     </div>
                     <div class="input-group-append">
                         <a href="" style="margin-left:50%;margin-top: 50%;color:#333" data-toggle="tooltip" data-placement="right" title="Clique para visualizar senha.">
-                            <i class="fa fa-eye-slash" aria-hidden="true"></i>
+                           <i class="fa fa-eye-slash" aria-hidden="true"></i>
                         </a>
                     </div>
                 </div>
-                {{ erros("password") }}
                 <div class="row">
-                    <!-- /.col -->
-                    <div class="col">
-                        <button type="submit" class="btn btn-primary btn-block">ENTRAR</button>
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-primary btn-block">Alterar Senha</button>
                     </div>
                     <!-- /.col -->
                 </div>
             </form>
-            <!-- /.social-auth-links -->
-            <p class="mb-1 mt-2">
-                <a href="/forgot-password">Esqueceu a senha ?</a>
-            </p>
-            <p class="mb-0">
-                <a href="register.html" class="text-center">Ainda Não possuo cadastro.</a>
-            </p>
+            {{ message("warning") }}
         </div>
         <!-- /.login-card-body -->
     </div>
@@ -76,11 +60,11 @@
 <!-- /.login-box -->
 
 <!-- jQuery -->
-<script src="{{ template_admin }}/plugins/jquery/jquery.min.js"></script>
+<script src="/{{ template_admin }}/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
-<script src="{{ template_admin }}/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/{{ template_admin }}/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
-<script src="{{ template_admin }}/dist/js/adminlte.min.js"></script>
+<script src="/{{ template_admin }}/dist/js/adminlte.min.js"></script>
 <script>
     $(document).ready(function() {
         $("#show_hide_password a").on('click', function(event) {

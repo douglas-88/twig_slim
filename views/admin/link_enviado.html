@@ -21,35 +21,15 @@
 <body class="hold-transition login-page">
 <div class="login-box">
     <div class="login-logo">
-        <a href="/"><b>PROJETO RESGATE</b></a>
+        <a href="/">
+            <b>PROJETO RESGATE</b>
+            <span>Recuperação de senha</span>
+        </a>
     </div>
-    <!-- /.login-logo -->
-    <div class="card">
-        <div class="card-body login-card-body">
-            <p class="login-box-msg">Esqueceu sua senha?<br>Aqui você pode facilmente criar uma nova senha.</p>
-
-            <form action="/forgot-password" method="post">
-                <div class="input-group mb-3">
-                    <input type="email" class="form-control" name="email" placeholder="Email" value="{{ sent('email') }}">
-                    <div class="input-group-append">
-                        <div class="input-group-text">
-                            <span class="fas fa-envelope"></span>
-                        </div>
-                    </div>
-                </div>
-                {{ message("email") }}
-                <div class="row">
-                    <div class="col-12">
-                        <button type="submit" class="btn btn-primary btn-block">Enviar link por e-mail</button>
-                    </div>
-                    <!-- /.col -->
-                </div>
-            </form>
-        </div>
-        <!-- /.login-card-body -->
+    <div class="alert alert-success" role="alert">
+        Enviamos um e-mail com link de criar nova senha para o email: <a href="#" class="alert-link">{{ message("email") }}</a>.
+        <br>Favor,confira seu email.
     </div>
-    {{ message("success") }}
-    {{ message("warning") }}
 </div>
 <!-- /.login-box -->
 
