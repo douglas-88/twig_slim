@@ -6,8 +6,13 @@ require __DIR__ . "/../bootstrap.php";
 $app->get("/login","LoginController:index")->add($middleware->checkLoggedIn());
 $app->post("/login","LoginController:store");
 $app->get("/logout","LoginController:destroy");
-$app->get("/forgot-password","PasswordRecoveryController:forgot")->add($middleware->checkLoggedIn());
-$app->post("/forgot-password","PasswordRecoveryController:enviarLinkRecuperarSenha");
+
+$app->get("/forgot-password","PasswordRecoveryController:index")->add($middleware->checkLoggedIn());
+$app->post("/forgot-password","PasswordRecoveryController:checkMail");
+$app->get("/reset-password/code/{code}","PasswordRecoveryController:checkCode")->add($middleware->checkLoggedIn());
+$app->get("/reset-password-link-send","PasswordRecoveryController:linkConfirm");
+$app->get("/recover-password/user/{code}","PasswordRecoveryController:showFormUpdate")->add($middleware->checkLoggedIn());
+$app->post("/reset-password/user/{code}","PasswordRecoveryController:updatePassword");
 
 $app->group("/painel/admin",function() use ($app){
     $app->get("[/]","AdminController:index");

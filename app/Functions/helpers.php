@@ -67,3 +67,9 @@ function recoveryPasswordGenerate(){
 
     return $url;
 }
+
+function url(){
+   
+    return $root = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'];
+
+}

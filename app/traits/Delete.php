@@ -17,4 +17,10 @@ trait Delete
 
         return $delete->rowCount();
     }
+
+    public function delete2(){
+        $this->binds = [];
+        $this->sql = "DELETE FROM {$this->table} ";
+        return $this;
+    }
 }

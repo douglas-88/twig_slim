@@ -60,6 +60,12 @@ trait Read
         return $select->fetchAll();
     }
 
+    public function exec(){
+
+        $select = $this->connection->prepare($this->sql);
+        $select->execute($this->binds);
+        return $this;
+    }
     /**
      * Melhorar este método para que possa aceitar a o operador AND, por exemplo:
      * WHERE field =:field AND field2 =:field2 ...
@@ -92,6 +98,26 @@ trait Read
 
         $this->sql .= " WHERE {$field} {$sinal} :{$field}";
 
+        return $this;
+    }
+
+    public function where2(array $rules){
+
+       $this->sql .= " WHERE ";
+
+        foreach ($rules as $key => $value){
+            if(is_array($rules[$key])){
+                $this->sql .= "{$rules[$key][0]} {$rules[$key][1]} :{$rules[$key][0]}  AND ";
+                $this->binds[$rules[$key][0]] = $rules[$key][2];
+            }else{
+                $this->sql .= "{$rules[0]} {$rules[1]} :{$rules[0]}";
+                $this->binds[$rules[0]] = $rules[2];
+                break;
+            }
+
+        }
+
+        $this->sql = rtrim($this->sql," AND ");
         return $this;
     }
 
