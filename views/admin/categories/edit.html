@@ -1,0 +1,18 @@
+{% extends "admin/painel.html" %}
+{% block content %}
+<h1>Categorias</h1>
+   <div class="row">
+        <div class="col-4">
+           <form method="POST" action="/painel/admin/category/{{category.id}}">
+              <div class="form-group">
+                <label for="name">Nome</label>
+                <input type="text" name="name" class="form-control" id="name" value="{{ category.name }}" placeholder="Nome da Categoria">
+                {{ erros("name") }}
+                {{ message("name") }}
+              </div>
+              <button type="submit" class="btn btn-primary">Alterar</button>
+            </form>
+        </div>
+    </div>
+    <!-- /.row -->
+{% endblock %}

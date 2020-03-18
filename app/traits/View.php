@@ -2,36 +2,36 @@
 
 namespace App\traits;
 use Core\Load;
-use Twig\Loader\FilesystemLoader;
 use Twig\Environment;
+use Twig\Loader\FilesystemLoader;
 
-trait View{
+trait View {
 
-    protected $twig;
-    protected $templateAdmin = "../assets/templates";
+	protected $twig;
+	protected $templateAdmin = "/assets/templates";
 
-    protected function twig(){
+	protected function twig() {
 
-        $loader     = new FilesystemLoader(__DIR__ . "/../../views");
-        $this->twig = new Environment($loader, ['debug' => true]);
-        $this->twig->addExtension(new \Twig\Extension\DebugExtension());
-    }
+		$loader = new FilesystemLoader(__DIR__ . "/../../views");
+		$this->twig = new Environment($loader, ['debug' => true]);
+		$this->twig->addExtension(new \Twig\Extension\DebugExtension());
+	}
 
-   protected function functions(){
-        $functions = Load::file("/app/Functions/twig.php");
+	protected function functions() {
+		$functions = Load::file("/app/Functions/twig.php");
 
-        foreach ($functions as $function){
-            $this->twig->addFunction($function);
-        }
-   }
+		foreach ($functions as $function) {
+			$this->twig->addFunction($function);
+		}
+	}
 
-    protected function load(){
-        $this->twig();
-        $this->functions();
-    }
+	protected function load() {
+		$this->twig();
+		$this->functions();
+	}
 
-    protected function view(string $view, array $data = []){
-        $this->load();
-        echo $this->twig->render(str_replace(".","/",$view).".html",$data);
-    }
+	protected function view(string $view, array $data = []) {
+		$this->load();
+		echo $this->twig->render(str_replace(".", "/", $view) . ".html", $data);
+	}
 }

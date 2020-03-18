@@ -3,6 +3,7 @@
 use Twig\TwigFunction;
 use Core\Flash;
 use Core\Validate;
+use Carbon\Carbon;
 
 
 $erros = new TwigFunction("erros",function($index){
@@ -25,4 +26,14 @@ $admin =  new TwigFunction("admin",function() {
 
 });
 
-return [$erros,$sent,$message,$admin];
+$timeAgo =  new TwigFunction("timeAgo",function($date) {
+
+    Carbon::setLocale("pt-br");
+
+    $created = Carbon::parse($date);
+
+    return $created->diffForHumans();
+
+});
+
+return [$erros,$sent,$message,$admin,$timeAgo];
