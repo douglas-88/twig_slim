@@ -11,7 +11,11 @@ use Core\Login;
 class Middleware
 {
 
-
+    /*
+    * Checa se o usuário tem permissão para acessar a página
+    * caso não redireciona-o para a página a qual tem permissão.
+    * @return \Closure
+    */
     public function auth($role){
 
        $config = Load::file("/config.php");
@@ -38,6 +42,11 @@ class Middleware
    }
 
 
+    /*
+     * Checa se o usuário está logado, caso sim, redireciona-o para
+     * a página a qual tem permissão.
+     * @return \Closure
+     */
    public function checkLoggedIn()
    {
 

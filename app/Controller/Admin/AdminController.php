@@ -14,7 +14,7 @@ class AdminController extends Controller
      */
     public function index() {
 
-        $this->view("admin/master",["template_admin" => $this->templateAdmin]);
+        $this->view("admin/painel",["template_admin" => $this->templateAdmin]);
 
     }
 

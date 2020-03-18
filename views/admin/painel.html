@@ -1,7 +1,62 @@
-{% extends 'master.html' %}
-
-{% block master %}
-<h1>{{ title }}</h1>
-<h3>Bem vindo {{ admin().nome }}</h3>
-<a href="/logout">Sair do sistema</a>
+{% extends 'admin/master.html' %}
+{% block menu %}
+<nav class="mt-2">
+    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <li class="nav-item">
+            <a href="#" class="nav-link">
+                <i class="nav-icon far fa-image"></i>
+                <p>
+                    Usuários
+                </p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="/painel/admin/post" class="nav-link">
+                <i class="nav-icon far fa-image"></i>
+                <p>
+                    Posts
+                </p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="/painel/admin/category" class="nav-link">
+                <i class="nav-icon far fa-image"></i>
+                <p>
+                    Categorias
+                </p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="#" class="nav-link">
+                <i class="nav-icon far fa-image"></i>
+                <p>
+                    Comentários
+                </p>
+            </a>
+        </li>
+        <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+                <i class="nav-icon far fa-image"></i>
+                <p>
+                    Especialidades
+                    <i class="right fas fa-angle-left"></i>
+                </p>
+            </a>
+            <ul class="nav nav-treeview">
+                <li class="nav-item">
+                    <a href="pages/charts/chartjs.html" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Fonoaudiologia</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="pages/charts/flot.html" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Psicologia</p>
+                    </a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</nav>
 {% endblock %}

@@ -1,0 +1,74 @@
+{% extends "admin/painel.html" %}
+{% block content %}
+<h1>Novo Post</h1>
+ <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header ">
+                    <a class="btn btn-primary float-right" href=""  role="button" aria-expanded="false">
+                        Criar Novo
+                    </a>
+                    <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        Filtros
+                    </a>
+                    <div class="collapse" id="collapseExample">
+                        <div class="card-tools">
+                            <form action="" method="POST" class="form">
+                                <label>Faixa de Renda:</label><br>
+                                <input type="text" class="form-control mr-1" name="renda_ini" value="" placeholder="Renda Inicial">
+                                <input type="text" class="form-control mr-1" name="renda_fin" value="" placeholder="Renda Final">
+                                <label>Nome:</label><br>
+                                <input type="text" class="form-control mr-1" name="nome" value="" placeholder="Nome">
+
+                                <input type="submit" value="PESQUISAR">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body table-responsive p-0">
+                    <table class="table table-head-fixed">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>TÍTULO</th>
+							<th>CATEGORIA</th>
+                            <th>CAPA</th>
+                            <th>AUTOR</th>
+                            <th>CRIADO EM</th>
+                            <th>OPÇÔES</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                       
+                            <tr>
+                                <td>1</td>
+                                <td>Douglas</td>
+                                <td>dcdouglas64@gmail.com</td>
+                                <td>dcdouglas64@gmail.com</td>
+                                <td>celular</td>
+                                <td>R$ renda</td>
+                                <td>
+                                    <a href=""><button type="button" class="btn btn-primary"><i class="far fa-eye"></i></button></a>
+                                    <button type="button" class="btn btn-success"><i class="fas fa-edit"></i></button>
+                                    <button type="button" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
+                                </td>
+                            </tr>
+                      
+                       
+                        </tbody>
+
+                    </table>
+                    <div class="card-footer clearfix">
+                        <div class="float-right">
+                          paginação
+                        </div>
+                    </div>
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </div>
+    </div>
+    <!-- /.row -->
+{% endblock %}

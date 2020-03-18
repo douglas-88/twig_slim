@@ -1,0 +1,55 @@
+{% extends "admin/painel.html" %}
+{% block content %}
+<h1>Categorias</h1>
+ <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header ">
+                    <a class="btn btn-primary float-right" href="/painel/admin/category/create"  role="button" aria-expanded="false">
+                        Criar Novo
+                    </a>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body table-responsive p-0">
+                    <table class="table table-head-fixed">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th style="width:300px">NOME</th>
+                            <th>CRIADO EM</th>
+                            <th>ATUALIZADO EM</th>
+                            <th style="width:200px;text-align:right;">OPÇÔES</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for category in categories %}
+
+                            <tr>
+                                <td>{{ category.id }}</td>
+                                <td>{{ category.name }}</td>
+                                <td>{{ timeAgo(category.created_at) }}</td>
+                                <td>{{ timeAgo(category.updated_at) }}</td>
+                                <td style="width:200px;text-align:right;">
+                                    <a href="/painel/admin/category/{{category.id}}"><button type="button" class="btn btn-success"><i class="fas fa-edit"></i></button></a>
+                                    <a href="/painel/admin/category/delete/{{ category.id }}" onclick="return confirm('Deseja excluir a Categoria: {{category.name}}')"><button type="button" class="btn btn-danger"><i class="far fa-trash-alt"></i></button></a>
+                                </td>
+                            </tr>
+
+                        {% endfor %}
+                       
+                        </tbody>
+
+                    </table>
+                    <div class="card-footer clearfix">
+                        <div class="float-right">
+                         {{ links|raw }}
+                        </div>
+                    </div>
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </div>
+    </div>
+    <!-- /.row -->
+{% endblock %}
