@@ -18,8 +18,8 @@ class Post extends Model {
                                    posts.created_at as criacao")
                     ->join("categories","posts.category_id","categories.id")
                     ->join("users","users.id","posts.user_id")
-                    ->order("order by posts.id desc")
                     ->busca("title,content,status")
+                     ->order("order by posts.id desc")
                     ->paginate(1)
                     ->get();
     }

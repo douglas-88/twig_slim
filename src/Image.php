@@ -24,6 +24,7 @@ class Image
 
     public function __construct($imageNameInput)
     {
+        mkdir("assets/images/uploads/",0777);
         $this->intervention = new ImageManager();
 
         $this->image = $_FILES[$imageNameInput];
