@@ -5,11 +5,8 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header ">
-                    <a class="btn btn-primary float-right" href=""  role="button" aria-expanded="false">
+                    <a class="btn btn-primary float-right" href="/painel/admin/post/create"  role="button" aria-expanded="false">
                         Criar Novo
-                    </a>
-                    <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                        Filtros
                     </a>
                     <div class="collapse" id="collapseExample">
                         <div class="card-tools">
@@ -32,36 +29,37 @@
                         <tr>
                             <th>ID</th>
                             <th>TÍTULO</th>
-							<th>CATEGORIA</th>
+							<th>CONTEÚDO</th>
                             <th>CAPA</th>
+                            <th>STATUS</th>
                             <th>AUTOR</th>
-                            <th>CRIADO EM</th>
-                            <th>OPÇÔES</th>
+                            <th>CATEGORIA</th>
+                            <th style="width:200px;text-align:right;">OPÇÔES</th>
                         </tr>
                         </thead>
                         <tbody>
-                       
+                        {% for post in posts %}
                             <tr>
-                                <td>1</td>
-                                <td>Douglas</td>
-                                <td>dcdouglas64@gmail.com</td>
-                                <td>dcdouglas64@gmail.com</td>
-                                <td>celular</td>
-                                <td>R$ renda</td>
-                                <td>
-                                    <a href=""><button type="button" class="btn btn-primary"><i class="far fa-eye"></i></button></a>
-                                    <button type="button" class="btn btn-success"><i class="fas fa-edit"></i></button>
-                                    <button type="button" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
+                                <td>{{ post.id }}</td>
+                                <td>{{ post.title }}</td>
+                                <td>{{ post.content|slice(0, 40) }} ...</td>
+                                <td><img src="/{{ post.capa }}" alt="" width="100"></td>
+                                <td>{% if post.status == 1 %}Ativo {% else %} Inativo {% endif %}</td>
+                                <td>{{ post.user }}</td>
+                                <td>{{ post.category }}</td>
+                                <td style="width:200px;text-align:right;">
+                                    <a href="post/{{ post.id }}"><button type="button" class="btn btn-success"><i class="fas fa-edit"></i></button></a>
+                                    <a href="/painel/admin/post/delete/{{ post.id }}" onclick="return confirm('Deseja excluir o Post: {{post.title}}')"><button type="button" class="btn btn-danger"><i class="far fa-trash-alt"></i></button></a>
                                 </td>
                             </tr>
-                      
+                        {% endfor %}
                        
                         </tbody>
 
                     </table>
                     <div class="card-footer clearfix">
                         <div class="float-right">
-                          paginação
+                          {{ links|raw }}
                         </div>
                     </div>
                 </div>

@@ -1,0 +1,52 @@
+{% extends "admin/painel.html" %}
+{% block content %}
+<h1>Novo Post</h1>
+<form method="POST" action="/painel/admin/post/create" enctype="multipart/form-data">
+        <div class="row">
+            <div class="col-9">
+                        <div class="form-group">
+                            <label for="title">Título</label>
+                            <input type="text" name="title" class="form-control" id="title" value="{{ sent('title') }}" placeholder="Nome da Categoria">
+                            {{ erros("title") }}
+                            {{ message("title") }}
+                        </div>
+                        <div class="form-group">
+                            <label for="content">Conteúdo</label>
+                            <textarea name="content" id="content">
+                                {{ sent('content') }}
+                            </textarea>
+                            {{ erros("content") }}
+                            {{ message("content") }}
+                        </div>
+            </div>
+            <div class="col-3">
+                <div class="form-group">
+                    <label for="categorias">Categorias</label>
+                    <select id="categorias" class="form-control" name="category_id" >
+                        <option value="">-- ESCOLHA UMA CATEGORIA --</option>
+                        {% for category in categories %}
+                        <option value="{{ category.id }}" {% if  "{{sent('category_id')}}" == category.id %} selected = 'selected' {% endif %}>{{ category.name }}</option>
+                        {% endfor %}
+                    </select>
+                    {{ erros("category_id") }}
+                    {{ message("category_id") }}
+                </div>
+                <div class="form-group">
+                    <label for="thumbnail">Capa</label>
+                    <img class="img-fluid img-thumbnail d-none" id="output">
+                    <input type="file" onchange="loadFile(event)" name="thumbnail" class="form-control" id="thumbnail" accept="image/png, image/jpeg, image/jpg">
+                </div>
+                    <div class="form-group">
+                    <label for="inativo">Inativo</label>
+                    <input type="radio" name="status" id="inativo" value="0">
+                    <br>
+                    <label for="ativo">Ativo</label>
+                    <input type="radio" name="status" id="ativo" value="1" checked>
+                </div>
+                <button type="submit" class="btn btn-primary">Cadastrar</button>
+            </div>
+        </div>
+    </form>
+
+    <!-- /.row -->
+{% endblock %}

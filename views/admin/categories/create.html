@@ -6,7 +6,7 @@
            <form method="POST" action="/painel/admin/category/create">
               <div class="form-group">
                 <label for="name">Nome</label>
-                <input type="text" name="name" class="form-control" id="name" value="{{ sent('name') }}" placeholder="Nome da Categoria">
+                <input type="text" name="name" class="form-control" id="name" value="{{ post.name is defined ? post.name : ''}}" placeholder="Nome da Categoria">
                 {{ erros("name") }}
                 {{ message("name") }}
               </div>

@@ -21,6 +21,13 @@ $app->group("/painel/admin", function () use ($app) {
 	$app->post("/category/create", "CategoryController:store");
 	$app->post("/category/{id}", "CategoryController:update");
 	$app->get("/category/delete/{id}", "CategoryController:destroy");
+
+    $app->get("/posts[/]", "PostController:index");
+    $app->get("/post/create", "PostController:create");
+    $app->get("/post/{id}", "PostController:edit");
+    $app->post("/post/create", "PostController:store");
+    $app->post("/post/{id}", "PostController:update");
+    $app->get("/post/delete/{id}", "PostController:destroy");
 })->add($middleware->auth(1));
 
 $app->group("/painel/professor", function () use ($app) {

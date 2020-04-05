@@ -14,6 +14,16 @@ class Validate
 {
     use Validations,Sanitize;
 
+    protected $data;
+
+    public function __construct($data)
+    {
+        foreach ($data as $field => $value){
+            $this->data[$field] = trim(filter_var($value,FILTER_SANITIZE_STRING));
+
+        }
+    }
+
     public function validate($rules){
 
 
@@ -33,7 +43,7 @@ class Validate
             }
         }
 
-        return $this->sanitize($_POST);
+        return $this->data;
 
     }
 

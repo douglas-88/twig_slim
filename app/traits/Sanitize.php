@@ -9,7 +9,7 @@ trait Sanitize{
         $sanitezed = [];
 
         foreach ($data as $field => $value){
-            $sanitezed[$field] = filter_var($value,FILTER_SANITIZE_STRING);
+            $sanitezed[$field] = rtrim(filter_var($value,FILTER_SANITIZE_STRING));
         }
 
         return $sanitezed;
