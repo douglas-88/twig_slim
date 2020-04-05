@@ -20,6 +20,8 @@ class Image
 
     protected $type;
 
+    protected $path = "assets/images/uploads/";
+
     public function __construct($imageNameInput)
     {
         $this->intervention = new ImageManager();
@@ -83,9 +85,11 @@ class Image
         if($this->type == "avatar"){
             $background = $this->intervention->canvas(90,90);
             $background->insert($image,"center");
-            $background->save("assets/images/uploads/{$this->getName()}");
+            $background->save($this->path.$this->getName());
+            return $this->path.$this->getName();
         }else{
-            $image->save("assets/images/uploads/{$this->getName()}");
+            $image->save($this->path.$this->getName());
+            return $this->path.$this->getName();
         }
     }
 
@@ -96,6 +100,6 @@ class Image
     public function upload(){
 
         $this->rename();
-        $this->doUpload();
+        return $this->doUpload();
     }
 }

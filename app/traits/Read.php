@@ -17,7 +17,7 @@ trait Read
      * @return User
      */
     public function select($fields = "*"){
-       $this->sql = "SELECT {$fields} FROM {$this->table}";
+       $this->sql = "SELECT {$fields} FROM {$this->table} ";
        return $this;
     }
 
@@ -31,11 +31,16 @@ trait Read
         return $select;
     }
 
+    public function getAll(){
+        return $this->select()->get();
+    }
+
     /**
      * Método responsável por Obter a quantidade de registros para a paginação.
      * @return Int
      */
     public function count():int {
+
         $select = $this->connection->prepare($this->sql);
         $select->execute($this->binds);
         return $select->rowCount();
@@ -56,6 +61,7 @@ trait Read
      * @return array
      */
     public function get():array{
+
         $select  = $this->bindAndExecute();
         return $select->fetchAll();
     }
@@ -63,8 +69,8 @@ trait Read
     public function exec(){
 
         $select = $this->connection->prepare($this->sql);
-        $select->execute($this->binds);
-        return $this;
+
+        return $select->execute($this->binds);
     }
     /**
      * Melhorar este método para que possa aceitar a o operador AND, por exemplo:
@@ -140,16 +146,52 @@ trait Read
 
        $fields = explode(",",$fields);
 
-       $this->sql .= " WHERE ";
+       if(!empty(busca())){
+               if(substr_count($this->sql,"WHERE") > 0){
+                   $this->sql .= " AND ";
+               }else{
+                   $this->sql .= " WHERE ";
+               }
 
-       foreach($fields as $field){
-           $this->sql .= " {$field} LIKE :{$field} OR ";
-           $this->binds[$field] = "%".busca()."%";
+               foreach($fields as $field){
+                    /*
+                   if(substr_count($field,".") > 0){
+
+                       list($table,$column) = explode(".",$field);
+                       $tabela = $table;
+                       $table = "\\App\\Model\\".ucfirst($table);
+                       $model = new $table;
+                       $id = $model->select("id")->where2(["name","LIKE", "%".busca()."%"])->first();
+                       $this->sql .= " ".$tabela.".id = :".$tabela.".id"." OR ";
+                       $this->binds[$column] = $id;
+
+                   }else{
+                       $this->sql .= " {$field} LIKE :{$field} OR ";
+                       $this->binds[$field] = "%".busca()."%";
+                   }
+               */
+
+                   $this->sql .= " {$field} LIKE :{$field} OR ";
+                   $this->binds[$field] = "%".busca()."%";
+               }
+               $this->sql = rtrim($this->sql,"OR ");
+
        }
-
-       $this->sql = rtrim($this->sql,"OR ");
 
        return $this;
 
+    }
+
+    public function join($table,$column1,$column2){
+
+        $this->sql .= " INNER JOIN {$table} ON({$column1} = {$column2}) ";
+
+        return $this;
+
+    }
+
+    public function order($order){
+        $this->sql .= " {$order} ";
+        return $this;
     }
 }

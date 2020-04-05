@@ -37,7 +37,7 @@ class LoginController extends Controller
      */
     public function store(Request $request, Response $response)
     {
-        $validate = new Validate();
+        $validate = new Validate($_POST);
         $data = $validate->validate([
             "email" => "required:email",
             "password" => "required"

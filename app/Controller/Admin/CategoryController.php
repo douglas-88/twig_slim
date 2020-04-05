@@ -5,7 +5,7 @@ namespace App\Controller\Admin;
 use Core\Controller;
 use Slim\Http\Request;
 use Slim\Http\Response;
-use App\Model\Category;
+use App\Model\Categories;
 use Core\Validate;
 use Core\Redirect;
 
@@ -15,7 +15,7 @@ class CategoryController extends Controller {
 	 */
 	public function index() {
 
-	    $category = new Category;
+	    $category = new Categories;
 	    $categories = $category->select()->busca("name")->paginate(3)->get();
 		$this->view("admin/categories/index", [
 		    "template_admin" => $this->templateAdmin,
@@ -37,19 +37,16 @@ class CategoryController extends Controller {
 	 */
 	public function store(Request $request, Response $response) {
 		//$data = filter_input_array(($_SERVER['REQUEST_METHOD'] == "POST") ? INPUT_POST : INPUT_GET, FILTER_SANITIZE_STRING);
-		$validate = new Validate();
+		$validate = new Validate($_POST);
         $data = $validate->validate([
             "name" => "required"
         ]);
 
         if($validate->hasErros()){
-            foreach($data as $field => $value){
-                flash("post_".$field,$data[$field]);
-            }
-            back();
+            return $this->view("admin/categories/create", ["template_admin" => $this->templateAdmin,"post" => $_POST]);
         }
    
-		$category = new Category;
+		$category = new Categories;
         $category->create($data);
         if($category->lastCreated > 0){
             flash("name",success("Cadastrado com sucesso"));
@@ -68,7 +65,7 @@ class CategoryController extends Controller {
 	 * Exibe o formulário de edição
 	 */
 	public function edit(Request $request, Response $response, $args) {
-        $category = new Category;
+        $category = new Categories;
         $category = $category->select()->where2(["id","=",$args["id"]])->first();
         return $response->write($this->view("admin/categories/edit", [
                             "template_admin" => $this->templateAdmin,
@@ -82,30 +79,33 @@ class CategoryController extends Controller {
 	 */
 	public function update(Request $request, Response $response, $args) {
 
-        $validate = new Validate();
+        $validate = new Validate($_POST);
         $data = $validate->validate([
             "name" => "required"
         ]);
 
-
+        $category = new Categories;
 
         if($validate->hasErros()){
-            foreach($data as $field => $value){
-                flash("post_".$field,$data[$field]);
-            }
-            back();
-        }
 
-        $category = new Category;
-        $category->update2(["name" => $data["name"]])->where2(["id","=",$args["id"]])->exec();
-        return Redirect::redirect("/painel/admin/category");
+
+            $category = $category->select()->where2(["id","=",$args["id"]])->first();
+            return $response->write($this->view("admin/categories/edit", [
+                "template_admin" => $this->templateAdmin,
+                "category" => $category,
+                "post" => $_POST
+            ]));
+
+        }
+            $category->update2(["name" => $data["name"]])->where2(["id","=",$args["id"]])->exec();
+            return Redirect::redirect("/painel/admin/category");
 	}
 
 	/**
 	 * Remove dados do Banco
 	 */
 	public function destroy(Request $request, Response $response, $args) {
-		$category = new Category();
+		$category = new Categories();
 		$category->delete2()->where2(["id","=",$args["id"]])->exec();
 
         return Redirect::redirect("/painel/admin/category");

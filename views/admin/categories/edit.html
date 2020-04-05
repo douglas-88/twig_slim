@@ -3,10 +3,10 @@
 <h1>Categorias</h1>
    <div class="row">
         <div class="col-4">
-           <form method="POST" action="/painel/admin/category/{{category.id}}">
+           <form method="POST" action="/painel/admin/category/{{category.id}}" class="form-edit-category">
               <div class="form-group">
                 <label for="name">Nome</label>
-                <input type="text" name="name" class="form-control" id="name" value="{{ category.name }}" placeholder="Nome da Categoria">
+                  <input type="text" name="name" class="form-control" id="name" value="{{ post.name is defined ? post.name : category.name}}"placeholder="Nome da Categoria">
                 {{ erros("name") }}
                 {{ message("name") }}
               </div>
@@ -15,4 +15,10 @@
         </div>
     </div>
     <!-- /.row -->
+{% endblock %}
+{% block script %}
+<!--
+<script src="/assets/js/xhttp.js"></script>
+<script src="/assets/js/categories.js"></script>
+-->
 {% endblock %}
