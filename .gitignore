@@ -1,4 +1,4 @@
 .idea
 .env
 vendor
-/public/images/uploads/
+/public/images/uploads/[^.]*
